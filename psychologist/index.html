@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Psychologist</title>
+    </head>
+    <body>
+        <h1>Hello There, I am your friendly psychologist assistant.</h1>
+
+        <section>
+
+            <h2>Here is a list of available psychologist</h2>
+
+            <div id="psychologist-list">
+            </div>
+
+        </section>
+
+        <template id="psychologist-template">
+            <ul>
+
+                <li>
+                    <label>Name:</label>
+                    <span class="psycho-name"></span>
+                </li>
+
+                <li>
+                    <label>Experience:</label>
+                    <span class="psycho-experience"></span>
+                </li>
+
+                <li>
+                    <label>Rate:</label>
+                    <span class="psycho-rate"></span>
+                </li>
+
+            </ul>
+        </template>
+
+        <script>
+            (function(){
+                console.log("Hey there, I will be calling the server to get a list of psychos here.");
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {
+                    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+
+                        //convert the string received from the server to a js object
+                        var psychologists = JSON.parse(httpRequest.responseText);
+
+                        var psychologist_div_content = '';
+
+                        //for every psychologist record populate the data into the template
+                        //then append the populated template at the end of the <div id="psychologist-list"> content
+                        psychologists.forEach(function(psychologist) {
+
+                            var psychologist_template = document.querySelector('#psychologist-template');
+                            psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
+                            psychologist_template.content.querySelector('.psycho-experience').textContent = psychologist.years_of_experience;
+                            psychologist_template.content.querySelector('.psycho-rate').textContent = psychologist.rate;
+                            psychologist_div_content += psychologist_template.innerHTML;
+                        });
+
+                        document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;
+
+                    } else if (httpRequest.readyState === 4 && httpRequest.status !== 200)  {
+                        document.querySelector('div#psychologist-list').innerHTML = "You Messed UP!!!";
+                    }
+                };
+
+                httpRequest.open('GET', '/psychologist/list.json');
+                httpRequest.send();
+            })();
+        </script>
+
+    </body>
+</html>

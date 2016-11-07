@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Sigmund Freud",
+    "years_of_experience": 160,
+    "rate": "160 Euro/hr"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Phil",
+    "years_of_experience": 20,
+    "rate": "$3.25/hr"
+  },
+  {
+    "id": 3,
+    "name": "Cookie Monster",
+    "years_of_experience": 50,
+    "rate": "7 cookies/hour"
+  },
+  {
+    "id": 4,
+    "name": "Borat",
+    "years_of_experience": 10,
+    "rate": "1 goat/hour"
+  }
+
+]
