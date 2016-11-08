@@ -227,19 +227,19 @@ Let's start building
                 ```
                 * Line by line explanation:
                 
-                    ```var psychologists = JSON.parse(httpRequest.responseText);```
+                    ```var psychologists = JSON.parse(httpRequest.responseText);```<br/>
                     Takes the string response from '/psychologist/list.json' and parses it into a javascript object
                     
-                    ```var psychologist_template = document.querySelector('#psychologist-template');```
+                    ```var psychologist_template = document.querySelector('#psychologist-template');```<br/>
                     Locates and retrieves the single psychologist template
                     
-                    ```psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;```
+                    ```psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;```<br/>
                     Locates and retrieves ```<span class="psycho-name"></span>``` ; Sets the content of it to the name from the psychologist json ```{ "name": "Sigmund Freud"}```
                     
-                    ```psychologist_div_content += psychologist_template.innerHTML;```
+                    ```psychologist_div_content += psychologist_template.innerHTML;```<br/>
                     Concats the specific psychologist's populated template to the accumulated mark-up
                     
-                    ```document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;```
+                    ```document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;```<br/>
                     Locates and retrieves the ```<div>``` with "id" of "psychologist-list".;
                     Sets the content of the ```<div>``` to the accumulated psychologists mark-up
                     
