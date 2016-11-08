@@ -1,12 +1,20 @@
-#Welcome to Web Dev! You are one hour away from becoming a pro!
-##Let's build a web app.
+Welcome to Web Dev!
+===================
+You are one hour away from becoming a pro!
+Let's build a web app.
   
-###Let's take care of infrustructure first
+Prerequisites
+-----
+1. Web Server
+- Serves the page(s) we create. Though, we could also see how files look without a server. 
+- In this tutorial we will be using apache(httpd): http://httpd.apache.org/docs/current/install.html
+- We will save the web pages under /var/www/html - this is apache's default location
+- Test apache is running : open a browser and go to http://localhost
+- Create a test file (any extension or no extension) under /var/www/html and make sure you can access it http://localhost/test
 
-    1. Server - serve the page(s) we create. Though, we could also see how files look without a server.
-      apache(hhtpd) - /var/www/html
-
-    2. Editor - whatever you want (atom, sublime, notepad++, vim, bunch of others)
+2. Editor
+- whatever you want (atom, sublime, notepad++, vim, bunch of others)
+- I will be using IntelliJ IDEA
 
 ###Stories in Gherkin Syntax
 	
