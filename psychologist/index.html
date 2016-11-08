@@ -7,23 +7,21 @@
     <body>
         <h1>Hello There, I am your friendly psychologist assistant.</h1>
 
-        <section>
+        <section style="margin-left: 100px;">
 
             <h2>Here is a list of available psychologist</h2>
 
-            <div id="psychologist-list">
-            </div>
+            <form name="select-pshychologist">
+                <div id="psychologist-list">
+                </div>
+            </form>
 
         </section>
 
         <template id="psychologist-template">
+            <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+            <span class="psycho-name"></span>
             <ul>
-
-                <li>
-                    <label>Name:</label>
-                    <span class="psycho-name"></span>
-                </li>
-
                 <li>
                     <label>Experience:</label>
                     <span class="psycho-experience"></span>
@@ -54,7 +52,8 @@
                         psychologists.forEach(function(psychologist) {
 
                             var psychologist_template = document.querySelector('#psychologist-template');
-                            psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
+                            psychologist_template.content.querySelector('input.psycho-name').value = psychologist.id;
+                            psychologist_template.content.querySelector('span.psycho-name').textContent = psychologist.name;
                             psychologist_template.content.querySelector('.psycho-experience').textContent = psychologist.years_of_experience;
                             psychologist_template.content.querySelector('.psycho-rate').textContent = psychologist.rate;
                             psychologist_div_content += psychologist_template.innerHTML;
@@ -70,6 +69,11 @@
                 httpRequest.open('GET', '/psychologist/list.json');
                 httpRequest.send();
             })();
+
+            (function(){
+                console.log(document.querySelector('form[name="select-pshychologist"]'));
+            })();
+
         </script>
 
     </body>

@@ -307,7 +307,47 @@ Let's start building
                     })();
                 </script>
                 ```
+4. Let's build User Story 2
                 
-
-
-
+    As a User I should be able to select a psychologist
+    
+    * Since we can have a session with one psychologist, let's make the selection of a psychologist a radio button
+        * Change the template to
+            ```html
+            <template id="psychologist-template">
+                <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+                <span class="psycho-name"></span>
+                <ul>
+                    <li>
+                        <label>Experience:</label>
+                        <span class="psycho-experience"></span>
+                    </li>
+                    <li>
+                        <label>Rate:</label>
+                        <span class="psycho-rate"></span>
+                    </li>
+                </ul>
+            </template>
+            ```
+         * Javascript change to work with new structure
+            ```javascript
+            psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
+            ```
+            To:
+            ```javascript
+            psychologist_template.content.querySelector('input.psycho-name').value = psychologist.id;
+            psychologist_template.content.querySelector('span.psycho-name').textContent = psychologist.name;
+            ```
+    * Now, let's turn the list of psychologists into a form and send our preference to the server
+      * wrap the ```<div id="pshychologists-list">``` within a ```<form>```
+      ```html
+      <form>
+          <div id="psychologist-list">
+          </div>
+      </form>
+      ```
+      * POST the selection to the server
+          * handle radio button selection event
+          ```javascript
+          document.querySelector('form.psycho-name')
+          ```
