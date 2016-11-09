@@ -95,14 +95,23 @@ Let's start building
         * Test the simulated server call: http://localhost/psychologist/list.json
         * Cool, now we have a back-end API which gives us the data for the list of all psychologist
     
-    * Q: How do we get the data to display? - A: Javascript and Ajax.
-        * Make a back-end call to '/psychologist/list.json' (from the fron-end mark-up - index.html)
+    * Q: How do we get the data to display? - A: Javascript(jQuery) and Ajax.
+        * What's jQuery? - it is a developer friendly abstraction of javascript. It is a javascript library.
+        * Let's download the latest version: http://jquery.com/download/ and place it in the "pshychologist" folder
+        * At the time of this download, the prod jQUery release is jquery-3.1.1.min.js
+        * Let's include(import) it so we can
+            * Right before `</head>`
+            ```javascript
+            <script src="jquery-3.1.1.min.js"></script>
+            ```
+        * Make a back-end call to '/psychologist/list.json' (from the front-end mark-up - index.html)
             * Include the following javascript right before </body> in index.html
             ```javascript
             <script>
-              (function(){
+              $(document).ready(function() {
+                  
                   console.log("Hey there, I will be calling the server to get a list of psychos here.")
-              })();
+              });
             </script>
             ```
             * Save the file
@@ -112,22 +121,19 @@ Let's start building
             * Change the script to make an AJAX call to the server, to get the list of all psychologists:
             ```javascript
             <script>
-                (function() {
+                $(document).ready(function() {
+    
                     console.log("Hey there, I will be calling the server to get a list of psychos here.");
-                    var httpRequest = new XMLHttpRequest();
+                    $.ajax({
+                        url: "/psychologist/list.json"
+                    }).done( function( list_of_psychologists_from_server ) {
                     
-                    httpRequest.onreadystatechange = function() {
-        
-                        if (httpRequest.readyState == 4 && httpRequest.status === 200) {
-                            console.log('psychologists from the server: ' + httpRequest.responseText);
-                        } else if (httpRequest.readyState !== 4 && httpRequest.status !== 200)  {
-                            alert("Something went terribly BAD. It is most likely YOUR fault! To be on the safe side, you should resign immediately.");
-                        }
-                    };
-        
-                    httpRequest.open('GET', '/psychologist/list.json');
-                    httpRequest.send();
-                })();
+                        $('div#psychologist-list').html( JSON.stringify(list_of_psychologists_from_server) );
+                    }).fail( function() {
+                    
+                        alert('You messed up!');
+                    });
+                });
             </script>
             ```      
             * Save the file, refresh http://localhost/psychologist, make sure the list of psychologists shows up in the console
@@ -135,10 +141,10 @@ Let's start building
         * Now, let's display the list of psychologists on the page
             Change this line:
             
-                console.log('psychologists from the server: ' + httpRequest.responseText);
+                console.log('list of psychologists: ' + data);
             To this:
             
-                document.querySelector('div#psychologist-list').innerHTML = httpRequest.responseText;
+                $('div#psychologist-list').html( JSON.stringify(data) );
             
             The previous line finds the ```<div>``` with an "id" of "psychologist-list" and sets its content to the response we got from the server(the list of psychologists)
         
@@ -186,60 +192,55 @@ Let's start building
             * Create a single psychologist template and place it right before the ```<script>```
             ```html
             <template id="psychologist-template">
-                <ul>
-        
-                    <li>
-                        <label>Name:</label>
-                        <span class="psycho-name"></span>
-                    </li>
-        
-                    <li>
-                        <label>Experience:</label>
-                        <span class="psycho-experience"></span>
-                    </li>
-        
-                    <li>
-                        <label>Rate:</label>
-                        <span class="psycho-rate"></span>
-                    </li>
-        
-                </ul>
+                <div>
+                    <ul>
+    
+                        <li>
+                            <label>Name:</label>
+                            <span class="psycho-name"></span>
+                        </li>
+    
+                        <li>
+                            <label>Experience:</label>
+                            <span class="psycho-experience"></span>
+                        </li>
+    
+                        <li>
+                            <label>Rate:</label>
+                            <span class="psycho-rate"></span>
+                        </li>
+    
+                    </ul>
+                </div>
             </template>
             ```
             * For every psychologist - populate the template with the specific data
-                * Add this right after ```console.log('psychologists from the server: ' + httpRequest.responseText);```
                 ```javascript
-                var psychologists = JSON.parse(httpRequest.responseText);
-                console.log("psychologists: " + psychologists);
+                    var psychologist_div_content = '';
 
-                var psychologist_div_content = '';
+                    list_of_psychologists_from_server.forEach( function( psychologist ) {
 
-                psychologists.forEach(function(psychologist) {
+                        var psychologist_template = $($('template#psychologist-template').html());
+                        psychologist_template.find('span.psycho-name').html( psychologist.name );
+                        psychologist_template.find('span.psycho-experience').html( psychologist.years_of_experience );
+                        psychologist_template.find('span.psycho-rate').html( psychologist.rate );
+                        psychologist_div_content += psychologist_template.html();
+                    });
 
-                    var psychologist_template = document.querySelector('#psychologist-template');
-                    psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
-                    psychologist_template.content.querySelector('.psycho-experience').textContent = psychologist.years_of_experience;
-                    psychologist_template.content.querySelector('.psycho-rate').textContent = psychologist.rate;
-                    psychologist_div_content += psychologist_template.innerHTML;
-                });
-
-                document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;
+                    $('div#psychologist-list').html( psychologist_div_content );
                 ```
                 * Line by line explanation:
-                
-                    ```var psychologists = JSON.parse(httpRequest.responseText);```<br/>
-                    Takes the string response from '/psychologist/list.json' and parses it into a javascript object
+                                   
+                    ```var psychologist_template = $($('template#psychologist-template').html());```<br/>
+                    Locates and retrieves the single psychologist template and creates(cookie cuts) a jQuery object off of it
                     
-                    ```var psychologist_template = document.querySelector('#psychologist-template');```<br/>
-                    Locates and retrieves the single psychologist template
-                    
-                    ```psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;```<br/>
+                    ```psychologist_template.find('span.psycho-name').html( psychologist.name );```<br/>
                     Locates and retrieves ```<span class="psycho-name"></span>``` ; Sets the content of it to the name from the psychologist json ```{ "name": "Sigmund Freud"}```
                     
-                    ```psychologist_div_content += psychologist_template.innerHTML;```<br/>
+                    ```psychologist_div_content += psychologist_template.html();```<br/>
                     Concats the specific psychologist's populated template to the accumulated mark-up
                     
-                    ```document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;```<br/>
+                    ```$('div#psychologist-list').html( psychologist_div_content );```<br/>
                     Locates and retrieves the ```<div>``` with "id" of "psychologist-list".;
                     Sets the content of the ```<div>``` to the accumulated psychologists mark-up
                     
@@ -247,64 +248,58 @@ Let's start building
             * Save the file and F5 at the browser to test
             * Cool, so this is what we did
                 * We created a template for a psychologist
-                * We got a list of psychologist from the server with Ajax
-                * We used javascript to populate the template and accumulate the templates into one string
-                * We used javascript to set the content of a ```<div>``` to the accumulated string
+                * We got a list of psychologist from the server with Ajax(jQuery)
+                * We used javascript(jQuery) to populate the template and accumulate the templates into one string
+                * We used javascript(jQuery) to set the content of a ```<div>``` to the accumulated string
                 ```javascript
                 <template id="psychologist-template">
-                    <ul>
+                    <div>
+                        <ul>
         
-                        <li>
-                            <label>Name:</label>
-                            <span class="psycho-name"></span>
-                        </li>
+                            <li>
+                                <label>Name:</label>
+                                <span class="psycho-name"></span>
+                            </li>
         
-                        <li>
-                            <label>Experience:</label>
-                            <span class="psycho-experience"></span>
-                        </li>
+                            <li>
+                                <label>Experience:</label>
+                                <span class="psycho-experience"></span>
+                            </li>
         
-                        <li>
-                            <label>Rate:</label>
-                            <span class="psycho-rate"></span>
-                        </li>
+                            <li>
+                                <label>Rate:</label>
+                                <span class="psycho-rate"></span>
+                            </li>
         
-                    </ul>
+                        </ul>
+                    </div>
                 </template>
-        
                 <script>
-                    (function(){
+                    $(document).ready(function() {
+        
                         console.log("Hey there, I will be calling the server to get a list of psychos here.");
-                        var httpRequest = new XMLHttpRequest();
-                        httpRequest.onreadystatechange = function() {
-                            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                        $.ajax({
+                            url: "/psychologist/list.json"
+                        }).done( function( list_of_psychologists_from_server ) {
         
-                                //convert the string received from the server to a js object
-                                var psychologists = JSON.parse(httpRequest.responseText);
+                            var psychologist_div_content = '';
         
-                                var psychologist_div_content = '';
+                            list_of_psychologists_from_server.forEach( function( psychologist ) {
         
-                                //for every psychologist record populate the data into the template
-                                //then append the populated template at the end of the <div id="psychologist-list"> content
-                                psychologists.forEach(function(psychologist) {
+                                var psychologist_template = $($('template#psychologist-template').html());
+                                psychologist_template.find('span.psycho-name').html( psychologist.name );
+                                psychologist_template.find('span.psycho-experience').html( psychologist.years_of_experience );
+                                psychologist_template.find('span.psycho-rate').html( psychologist.rate );
+                                psychologist_div_content += psychologist_template.html();
+                            });
         
-                                    var psychologist_template = document.querySelector('#psychologist-template');
-                                    psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
-                                    psychologist_template.content.querySelector('.psycho-experience').textContent = psychologist.years_of_experience;
-                                    psychologist_template.content.querySelector('.psycho-rate').textContent = psychologist.rate;
-                                    psychologist_div_content += psychologist_template.innerHTML;
-                                });
+                            $('div#psychologist-list').html( psychologist_div_content );
         
-                                document.querySelector('#psychologist-list').innerHTML = psychologist_div_content;
+                        }).fail( function() {
         
-                            } else if (httpRequest.readyState === 4 && httpRequest.status !== 200)  {
-                                document.querySelector('div#psychologist-list').innerHTML = "You Messed UP!!!";
-                            }
-                        };
-        
-                        httpRequest.open('GET', '/psychologist/list.json');
-                        httpRequest.send();
-                    })();
+                            alert('You messed up!');
+                        });
+                    });
                 </script>
                 ```
 4. Let's build User Story 2
@@ -315,28 +310,30 @@ Let's start building
         * Change the template to
             ```html
             <template id="psychologist-template">
-                <input type="radio" class="psycho-name" name="psycho-name" value=""/>
-                <span class="psycho-name"></span>
-                <ul>
-                    <li>
-                        <label>Experience:</label>
-                        <span class="psycho-experience"></span>
-                    </li>
-                    <li>
-                        <label>Rate:</label>
-                        <span class="psycho-rate"></span>
-                    </li>
-                </ul>
+                <div>
+                    <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+                    <span class="psycho-name"></span>
+                    <ul>
+                        <li>
+                            <label>Experience:</label>
+                            <span class="psycho-experience"></span>
+                        </li>
+                        <li>
+                            <label>Rate:</label>
+                            <span class="psycho-rate"></span>
+                        </li>
+                    </ul>
+                </div>
             </template>
             ```
          * Javascript change to work with new structure
             ```javascript
-            psychologist_template.content.querySelector('.psycho-name').textContent = psychologist.name;
+            psychologist_template.find('span.psycho-name').html( psychologist.name );
             ```
             To:
             ```javascript
-            psychologist_template.content.querySelector('input.psycho-name').value = psychologist.id;
-            psychologist_template.content.querySelector('span.psycho-name').textContent = psychologist.name;
+            psychologist_template.find('input.psycho-name').val(psychologist.id);
+            psychologist_template.find('span.psycho-name').html(psychologist.name);
             ```
     * Now, let's turn the list of psychologists into a form and send our preference to the server
       * wrap the ```<div id="pshychologists-list">``` within a ```<form>```
@@ -347,7 +344,29 @@ Let's start building
       </form>
       ```
       * POST the selection to the server
-          * handle radio button selection event
+          * bind a radio-button change event - add anywhere in the $(document).ready block
           ```javascript
-          document.querySelector('form.psycho-name')
+            $('html').on('change', 'input[type=radio][name=psycho-name]', function() {
+               console.log('change event!');
+            });
           ```
+          * Let's POST the selection to the server
+          ```javascript
+          //bind radio-button
+          $('html').on('change', 'input[type=radio][name=psycho-name]', function() {
+              console.log('change event!');
+              var post_data = {};
+              post_data.id = $(this).val();
+              $.ajax({
+                  url: "/psychologist/preference-save.json",
+                  type: "post",
+                  data: post_data
+              }).done( function( data ) {
+                  console.log("Successful Post!");
+              }).fail( function() {
+
+                alert('You messed up!');
+              });
+          });
+          ```          
+          
