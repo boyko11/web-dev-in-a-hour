@@ -16,8 +16,8 @@ $(document).ready(function() {
             preference_template.find('div.preference-value').html( saved_preference.value );
             //console.log(preference_template.html());
             $('#saved-preference-container').html(preference_template.html());
-            $('#psychologist-list').fadeOut(2500, function() {
-                $('#saved-preference-container').fadeIn(2500);
+            $('#psychologist-list').fadeOut(1500, function() {
+                $('#saved-preference-container').fadeIn(1500);
             });
         }).fail( function() {
 
