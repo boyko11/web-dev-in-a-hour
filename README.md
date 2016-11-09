@@ -368,5 +368,65 @@ Let's start building
                 alert('You messed up!');
               });
           });
-          ```          
-          
+          ```
+          * Let's test the post, F5 and select one of the radios - should get an error, since we don't have the emulated back end, so let's do that
+          * Create a file "preference-save.json"
+          ```javascript
+          {
+            "id": 1,
+            "name": "Psychologist",
+            "value": 1,
+            "status": "active"
+          }
+          ```
+          * Let's make sure we don't get an error this time - F5 and select a radio again
+          * Now, let's do something with successfully returned saved preference
+          * We will just display a successful message with the data returned from the server
+          * Let's create a template and place right after(or right before) the existing template
+          ```html
+          <template id="saved-preference">
+              <div>
+                  <div>
+                      <div>Congrats!</div>
+                      <div>You have successfully saved your preference for a </div>
+                      <div class="preference-name"></div>
+                      <div> as </div>
+                      <div class="preference-value"></div>
+                  </div>
+              </div>
+          </template>
+          ```
+          * Now let's crank out the javascript to populate the template and display it
+          * In the "done" callback for the POST, let's put this javascript
+          ```javascript
+          var preference_template = $($('template#saved-preference').html());
+          preference_template.find('div.preference-name').html( saved_preference.name );
+          preference_template.find('div.preference-value').html( saved_preference.value );
+          console.log(preference_template.html());
+          ```
+          * Save it and test it(F5 and make sure the constructed mark-up displays in the console)
+          * No let's make the mark-up display
+          * Add an invisible container div, which we will populate with the dynamically generated mark-up and make visible
+          * Add this html right after ```</form>```
+          ```html
+          <div id="saved-preference-container" style="display: none">
+          </div>
+          ```
+          * Inject the dynamic mark-up into it
+          ```javascript
+          //console.log(preference_template.html());
+          $('#saved-preference-container').html(preference_template.html());
+          ```
+          * Let's look at the DOM to see if it worked
+          * Now Let's make the list of psychologists disappear and make the saved preference appear
+          ```javascript
+          $('#saved-preference-container').html(preference_template.html());
+          $('#psychologist-list').hide();
+          $('#saved-preference-container').show();
+          ```
+          * Not bad, but let's make it fancier - fade out the list and fade in the preference
+          ```
+          $('#psychologist-list').fadeOut(2500, function() {
+            $('#saved-preference-container').fadeIn(2500);
+          });
+          ```
