@@ -310,35 +310,35 @@ Let's start building
     
     * Since we can have a session with one psychologist, let's make the selection of a psychologist a radio button
         * Change the template to
-            ```html
-            <template id="psychologist-template">
+        ```html
+        <template id="psychologist-template">
+            <div>
                 <div>
-                    <div>
-                        <input type="radio" class="psycho-name" name="psycho-name" value=""/>
-                        <span class="psycho-name"></span>
-                        <ul>
-                            <li>
-                                <label>Experience:</label>
-                                <span class="psycho-experience"></span>
-                            </li>
-                            <li>
-                                <label>Rate:</label>
-                                <span class="psycho-rate"></span>
-                            </li>
-                        </ul>
-                    </div>
+                    <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+                    <span class="psycho-name"></span>
+                    <ul>
+                        <li>
+                            <label>Experience:</label>
+                            <span class="psycho-experience"></span>
+                        </li>
+                        <li>
+                            <label>Rate:</label>
+                            <span class="psycho-rate"></span>
+                        </li>
+                    </ul>
                 </div>
-            </template>
-            ```
-         * Javascript change to work with new structure
-            ```javascript
-            psychologist_template.find('span.psycho-name').html( psychologist.name );
-            ```
-            To:
-            ```javascript
-            psychologist_template.find('input.psycho-name').val(psychologist.id);
-            psychologist_template.find('span.psycho-name').html(psychologist.name);
-            ```
+            </div>
+        </template>
+        ```
+        * Javascript change to work with new structure
+        ```javascript
+        psychologist_template.find('span.psycho-name').html( psychologist.name );
+        ```
+        To:
+        ```javascript
+        psychologist_template.find('input.psycho-name').val(psychologist.id);
+        psychologist_template.find('span.psycho-name').html(psychologist.name);
+        ```
     * Now, let's turn the list of psychologists into a form and send our preference to the server
       * wrap the ```<div id="pshychologists-list">``` within a ```<form>```
       ```html
