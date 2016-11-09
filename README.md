@@ -430,8 +430,8 @@ Let's start building
           ```
           * Not bad, but let's make it fancier - fade out the list and fade in the preference
           ```
-          $('#psychologist-list').fadeOut(2500, function() {
-            $('#saved-preference-container').fadeIn(2500);
+          $('#psychologist-list').fadeOut(1500, function() {
+            $('#saved-preference-container').fadeIn(1500);
           });
           ```
           * OK, we have something functional, but let's make it a little easier on the eyes
