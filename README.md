@@ -253,25 +253,27 @@ Let's start building
                 * We used javascript(jQuery) to set the content of a ```<div>``` to the accumulated string
                 ```javascript
                 <template id="psychologist-template">
-                    <div>
-                        <ul>
-        
-                            <li>
-                                <label>Name:</label>
-                                <span class="psycho-name"></span>
-                            </li>
-        
-                            <li>
-                                <label>Experience:</label>
-                                <span class="psycho-experience"></span>
-                            </li>
-        
-                            <li>
-                                <label>Rate:</label>
-                                <span class="psycho-rate"></span>
-                            </li>
-        
-                        </ul>
+                    <div
+                        <div>
+                            <ul>
+            
+                                <li>
+                                    <label>Name:</label>
+                                    <span class="psycho-name"></span>
+                                </li>
+            
+                                <li>
+                                    <label>Experience:</label>
+                                    <span class="psycho-experience"></span>
+                                </li>
+            
+                                <li>
+                                    <label>Rate:</label>
+                                    <span class="psycho-rate"></span>
+                                </li>
+            
+                            </ul>
+                        </div>
                     </div>
                 </template>
                 <script>
@@ -311,18 +313,20 @@ Let's start building
             ```html
             <template id="psychologist-template">
                 <div>
-                    <input type="radio" class="psycho-name" name="psycho-name" value=""/>
-                    <span class="psycho-name"></span>
-                    <ul>
-                        <li>
-                            <label>Experience:</label>
-                            <span class="psycho-experience"></span>
-                        </li>
-                        <li>
-                            <label>Rate:</label>
-                            <span class="psycho-rate"></span>
-                        </li>
-                    </ul>
+                    <div>
+                        <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+                        <span class="psycho-name"></span>
+                        <ul>
+                            <li>
+                                <label>Experience:</label>
+                                <span class="psycho-experience"></span>
+                            </li>
+                            <li>
+                                <label>Rate:</label>
+                                <span class="psycho-rate"></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </template>
             ```
@@ -430,3 +434,87 @@ Let's start building
             $('#saved-preference-container').fadeIn(2500);
           });
           ```
+          * OK, we have something functional, but let's make it a little easier on the eyes
+          * Let's crank out some css
+          * The header seems big, let's make it smaller h1 to h2 (not css yet)
+          * Now, let's move it a little to the right
+          ```html
+          <h2 style="margin-left: 8em;">
+          ```
+          * How about some borders around it
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black">
+          ```
+          * Let's make it less wide
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%">
+          ```
+          * Let's center align the text
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;">
+          ```
+          * Let's pad it up and down
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;">
+          ```
+          * Let's smooth out the borders
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em">
+          ```
+          * Let's make the background gray
+          ```html
+          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em;background-color: #c8cbd1">
+          ```
+          * Cool, but pretty long of a line, let's put all these styles in a class and just attach the class to the element
+            * Add right before ```</head>```
+            ```css
+            <style>
+                .gray-box {
+                    margin-left: 8em;
+                    border: 1px solid black;
+                    width: 40%;
+                    text-align: center;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    border-radius: .5em;
+                    background-color: #c8cbd1;
+                }
+            </style>
+            ```
+            * Change the h2 to ```<h2 class='gray-box'```
+          
+          * Could we make the rest of the content be a gray-box? Or maybe slightly lighter gray box
+          ```css
+          .light-gray-box {
+              background-color: #efefef !important;
+              margin-top: 1em;
+              margin-left: 12em;
+              border-radius: 2em;
+          }
+          ```
+          * Change ```<section>``` to ```<section class='light-gray-box'>```
+          * What's up with the wacky bullet points - let's se if we can fix these
+          * It's aligning the ul's to the center and we don't want that - let's align them to the left and then push them to center
+          * Let's give the div that contains the psychologist a class and then attach a style to it
+          ```html
+          <div class="psychologist-container">
+              <input type="radio" class="psycho-name" name="psycho-name" value=""/>
+          ```
+          ```css
+          .psychologist-container {
+              text-align: left;
+              margin-left: 15em;
+          }
+          ```
+          * CSS can get pretty long, so let's put it in another file - create app.css in the "psychologist" folder and save the CSS there
+          * replace the ```<style``` block in index.html with
+          ```html
+          <link rel="stylesheet" type="text/css" href="app.css" />
+          ```
+          * Javascript can get pretty long too, so let's outsource that too - create app.js in the "psychologist" folder and copy the contents of the ```<script>``` block there
+          * add the following line right AFTER the jQuery script include
+          ```javascript
+          <script src="app.js"></script>
+          ```
+          * Cool - cleaner, more modular code. That's all for now.
+            
