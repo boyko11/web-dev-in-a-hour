@@ -336,14 +336,14 @@ Let's start building
             </div>
         </template>
         ```
-        * Javascript change to work with new structure
+        * Javascript change to save the psychologist id, which we will later send to the server, when the psychologist is selected.
+        Add
         ```javascript
-        psychologist_template.find('span.psycho-name').html( psychologist.name );
+        var psychologist_template = $($('template#psychologist-template').html());
         ```
-        To:
+        Right after:
         ```javascript
-        psychologist_template.find('input.psycho-name').val(psychologist.id);
-        psychologist_template.find('span.psycho-name').html(psychologist.name);
+        var psychologist_template = $($('template#psychologist-template').html());
         ```
     * Now, let's turn the list of psychologists into a form and send our preference to the server
       * wrap the ```<div id="pshychologists-list">``` within a ```<form>```
