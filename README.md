@@ -148,7 +148,7 @@ Let's start building
             ```
             To this:
             ```
-            $('div#psychologist-list').html( JSON.stringify(data) );
+            $('div#psychologist-list').html( JSON.stringify( list_of_psychologists_from_server ) );
             ```
             
             The previous line finds the ```<div>``` with an "id" of "psychologist-list" and sets its content to the response we got from the server(the list of psychologists)
