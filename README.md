@@ -192,7 +192,7 @@ Let's start building
                 * Create a single psychologist template
                 * For every psychologist - populate the template with the specific data
                 * Concat all the populated templates
-                * Set the content of ```<div id=""></div>``` to the String resulting from the concat of the individual populated templates
+                * Set the content of ```<div id="psychologist-list"></div>``` to the String resulting from the concat of the individual populated templates
             
             * Create a single psychologist template and place it right before the ```<script>```
             ```html
