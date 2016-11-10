@@ -129,7 +129,7 @@ Let's start building
                         url: "/psychologist/list.json"
                     }).done( function( list_of_psychologists_from_server ) {
                     
-                        console.log('list of psychologists: ' + data);
+                        console.log(list_of_psychologists_from_server);
                     }).fail( function() {
                     
                         alert('You messed up!');
@@ -143,11 +143,13 @@ Let's start building
             
         * Now, let's display the list of psychologists on the page
             Change this line:
-            
-                console.log('list of psychologists: ' + data);
+            ```javascript
+            console.log(list_of_psychologists_from_server);
+            ```
             To this:
-            
-                $('div#psychologist-list').html( JSON.stringify(data) );
+            ```
+            $('div#psychologist-list').html( JSON.stringify(data) );
+            ```
             
             The previous line finds the ```<div>``` with an "id" of "psychologist-list" and sets its content to the response we got from the server(the list of psychologists)
         
