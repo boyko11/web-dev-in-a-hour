@@ -493,8 +493,8 @@ Let's start building
           
           * Could we make the rest of the content be a gray-box? 
           * Yah, let's change ```<section>``` to ```<section class='gray-box'>```
+          * Let's see what it looks like
           * How about slightly different, lighter gray box, yet still keeping the rest of the styles of gray box
-          * Or maybe slightly lighter gray box
           ```css
           .light-gray-box {
               background-color: #efefef !important;
@@ -502,7 +502,8 @@ Let's start building
               border-radius: 2em;
           }
           ```
-          * Change ```<section>``` to ```<section class='light-gray-box'>```
+          * Change ```<section class='gray-box'>``` to ```<section class='gray-box light-gray-box'>```
+          * A bit misaligned - let's fix it
           * Let's give the div that contains the psychologist a class and then attach a style to it
           ```html
           <div class="psychologist-container">
