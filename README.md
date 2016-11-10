@@ -106,7 +106,7 @@ Let's start building
             <script src="jquery-3.1.1.min.js"></script>
             ```
         * Make a back-end call to '/psychologist/list.json' (from the front-end mark-up - index.html)
-            * Include the following javascript right before </body> in index.html
+            * Include the following javascript right before ```</body>``` in index.html
             ```javascript
             <script>
               $(document).ready(function() {
