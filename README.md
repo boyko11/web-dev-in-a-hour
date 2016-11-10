@@ -345,6 +345,7 @@ Let's start building
         ```javascript
         var psychologist_template = $($('template#psychologist-template').html());
         ```
+        * Let's make sure the changed worked - F5, F12, let's find the id in the dom
     * Now, let's turn the list of psychologists into a form and send our preference to the server
       * wrap the ```<div id="pshychologists-list">``` within a ```<form>```
       ```html
