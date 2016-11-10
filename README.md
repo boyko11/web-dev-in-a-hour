@@ -220,21 +220,21 @@ Let's start building
             </template>
             ```
             * For every psychologist - populate the template with the specific data:
-                Replace ```$('div#psychologist-list').html( JSON.stringify( list_of_psychologists_from_server ) );``` with the following snippet
-                ```javascript
-                    var psychologist_div_content = '';
+            * Replace ```$('div#psychologist-list').html( JSON.stringify( list_of_psychologists_from_server ) );``` with the following snippet
+            ```javascript
+                var psychologist_div_content = '';
 
-                    list_of_psychologists_from_server.forEach( function( psychologist ) {
+                list_of_psychologists_from_server.forEach( function( psychologist ) {
 
-                        var psychologist_template = $($('template#psychologist-template').html());
-                        psychologist_template.find('span.psycho-name').html( psychologist.name );
-                        psychologist_template.find('span.psycho-experience').html( psychologist.years_of_experience );
-                        psychologist_template.find('span.psycho-rate').html( psychologist.rate );
-                        psychologist_div_content += psychologist_template.html();
-                    });
+                    var psychologist_template = $($('template#psychologist-template').html());
+                    psychologist_template.find('span.psycho-name').html( psychologist.name );
+                    psychologist_template.find('span.psycho-experience').html( psychologist.years_of_experience );
+                    psychologist_template.find('span.psycho-rate').html( psychologist.rate );
+                    psychologist_div_content += psychologist_template.html();
+                });
 
-                    $('div#psychologist-list').html( psychologist_div_content );
-                ```
+                $('div#psychologist-list').html( psychologist_div_content );
+            ```
                 * Line by line explanation:
                                    
                     ```var psychologist_template = $($('template#psychologist-template').html());```<br/>
