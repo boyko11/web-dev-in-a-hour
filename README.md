@@ -373,7 +373,7 @@ Let's start building
                   url: "/psychologist/preference-save.json",
                   type: "post",
                   data: post_data
-              }).done( function( data ) {
+              }).done( function( saved_preference ) {
                   console.log("Successful Post!");
               }).fail( function() {
 
@@ -392,7 +392,7 @@ Let's start building
           }
           ```
           * Let's make sure we don't get an error this time - F5 and select a radio again
-          * Now, let's do something with successfully returned saved preference
+          * Now, let's do something with the successfully returned saved preference
           * We will just display a successful message with the data returned from the server
           * Let's create a template and place right after(or right before) the existing template
           ```html
