@@ -52,7 +52,7 @@ Let's start building
     * Under the `<h1>` in index.html, add a section to hold the list of available psychologists:
         ```html
         <section>
-          <h2>Here is a list of available psychologist</h2>
+          <h2>Select your pshychologist</h2>
           <div id="psychologist-list">
           </div>
         </section>
@@ -439,38 +439,38 @@ Let's start building
           * The header seems big, let's make it smaller h1 to h2 (not css yet)
           * Now, let's move it a little to the right
           ```html
-          <h2 style="margin-left: 8em;">
+          <h2 style="margin-left: 20%;">
           ```
           * How about some borders around it
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black">
+          <h2 style="margin-left: 20%;border: 1px solid black">
           ```
           * Let's make it less wide
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%">
+          <h2 style="margin-left: 20%;border: 1px solid black;width: 40%">
           ```
           * Let's center align the text
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;">
+          <h2 style="margin-left: 20%;border: 1px solid black;width: 40%;text-align: center;">
           ```
           * Let's pad it up and down
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;">
+          <h2 style="margin-left: 20%;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;">
           ```
           * Let's smooth out the borders
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em">
+          <h2 style="margin-left: 20%;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em">
           ```
           * Let's make the background gray
           ```html
-          <h2 style="margin-left: 8em;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em;background-color: #c8cbd1">
+          <h2 style="margin-left: 20%;border: 1px solid black;width: 40%;text-align: center;padding-top: 1em;padding-bottom: 1em;border-radius: .5em;background-color: #c8cbd1">
           ```
           * Cool, but pretty long of a line, let's put all these styles in a class and just attach the class to the element
             * Add right before ```</head>```
             ```css
             <style>
                 .gray-box {
-                    margin-left: 8em;
+                    margin-left: 20%;
                     border: 1px solid black;
                     width: 40%;
                     text-align: center;
@@ -488,7 +488,6 @@ Let's start building
           .light-gray-box {
               background-color: #efefef !important;
               margin-top: 1em;
-              margin-left: 12em;
               border-radius: 2em;
           }
           ```
@@ -503,7 +502,7 @@ Let's start building
           ```css
           .psychologist-container {
               text-align: left;
-              margin-left: 15em;
+              margin-left: 10%;
           }
           ```
           * CSS can get pretty long, so let's put it in another file - create app.css in the "psychologist" folder and save the CSS there
