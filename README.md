@@ -361,6 +361,7 @@ Let's start building
                console.log('change event!');
             });
           ```
+          * Test the change - make sure you see the console statement
           * Let's POST the selection to the server
           ```javascript
           //bind radio-button
