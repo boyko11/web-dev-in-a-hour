@@ -8,7 +8,7 @@ Prerequisites
 1. Web Server
     * Serves the page(s) we create. Though, we could also see how files look without a server. 
     * In this tutorial we will be using apache(httpd): http://httpd.apache.org/docs/current/install.html
-    * We will save the web pages under /var/www/html - this is apache's default location
+    * We will save the web pages under /var/www/html - this is apache's default location for *nix OS's
     * Test apache is running : open a browser and go to http://localhost
     * Create a test file (any extension or no extension) under /var/www/html and make sure you can access it http://localhost/test
 
@@ -50,13 +50,13 @@ Let's start building
     As a User I should be able to see a list of psychologist
     
     * Under the `<h1>` in index.html, add a section to hold the list of available psychologists:
-        ```html
-        <section>
-          <h2>Select your pshychologist</h2>
-          <div id="psychologist-list">
-          </div>
-        </section>
-        ```
+    ```html
+    <section>
+      <h2>Select your pshychologist</h2>
+      <div id="psychologist-list">
+      </div>
+    </section>
+    ```
     * Test to make sure the new section renders:
         http://localhost/psychologist
 
