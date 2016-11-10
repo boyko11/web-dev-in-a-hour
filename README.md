@@ -500,8 +500,7 @@ Let's start building
           }
           ```
           * Change ```<section>``` to ```<section class='light-gray-box'>```
-          * What's up with the wacky bullet points - let's se if we can fix these
-          * It's aligning the ul's to the center and we don't want that - let's align them to the left and then push them to center
+          * A bit misaligned
           * Let's give the div that contains the psychologist a class and then attach a style to it
           ```html
           <div class="psychologist-container">
