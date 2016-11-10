@@ -99,8 +99,8 @@ Let's start building
         * What's jQuery? - it is a developer friendly abstraction of javascript. It is a javascript library. You can accomplish everything with pure javascript,
         but jQuery makes it easier for the dev and it also abstracts some of the cross-browser dev effort
         * Let's download the latest version: http://jquery.com/download/ and place it in the "pshychologist" folder
-        * At the time of this download, the prod jQUery release is jquery-3.1.1.min.js
-        * Let's include(import) it so we can
+        * At the time of this download, the prod jQuery release is jquery-3.1.1.min.js
+        * Let's include(import) jQuery, so we can use it
             * Right before ```</head>```
             ```javascript
             <script src="jquery-3.1.1.min.js"></script>
