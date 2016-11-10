@@ -101,7 +101,7 @@ Let's start building
         * Let's download the latest version: http://jquery.com/download/ and place it in the "pshychologist" folder
         * At the time of this download, the prod jQUery release is jquery-3.1.1.min.js
         * Let's include(import) it so we can
-            * Right before `</head>`
+            * Right before ```</head>```
             ```javascript
             <script src="jquery-3.1.1.min.js"></script>
             ```
