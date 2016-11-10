@@ -385,10 +385,10 @@ Let's start building
           * Create a file "preference-save.json"
           ```javascript
           {
-            "id": 1,
-            "name": "Psychologist",
-            "value": 1,
-            "status": "active"
+              "id": 1,
+              "name": "Psychologist",
+              "value": "Sigmund Freud",
+              "status": "active"
           }
           ```
           * Let's make sure we don't get an error this time - F5 and select a radio again
