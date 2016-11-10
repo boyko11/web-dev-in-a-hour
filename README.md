@@ -137,7 +137,7 @@ Let's start building
                 });
             </script>
             ```
-            * Save the file, refresh http://localhost/psychologist, make sure the list of psychologists shows up in the console
+            * Save the file, refresh http://localhost/psychologist, make sure the list of psychologists shows up in the console, expand through the object to see the actual data
             * Let's make a call to a non-existing back-end call, so we also test the ```.fail``` callback: 
             * Change '/psychologist/list.json' to '/psychologist/BLAH.json', refresh the page, make sure you see the alert, then revert the change.
             
