@@ -339,7 +339,7 @@ Let's start building
         * Javascript change to save the psychologist id, which we will later send to the server, when the psychologist is selected.
         Add
         ```javascript
-        var psychologist_template = $($('template#psychologist-template').html());
+        psychologist_template.find('input.psycho-name').val(psychologist.id);
         ```
         Right after:
         ```javascript
