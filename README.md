@@ -129,7 +129,7 @@ Let's start building
                         url: "/psychologist/list.json"
                     }).done( function( list_of_psychologists_from_server ) {
                     
-                        $('div#psychologist-list').html( JSON.stringify(list_of_psychologists_from_server) );
+                        console.log('list of psychologists: ' + data);
                     }).fail( function() {
                     
                         alert('You messed up!');
