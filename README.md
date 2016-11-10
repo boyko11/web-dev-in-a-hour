@@ -219,7 +219,8 @@ Let's start building
                 </div>
             </template>
             ```
-            * For every psychologist - populate the template with the specific data
+            * For every psychologist - populate the template with the specific data:
+            Replace ```$('div#psychologist-list').html( JSON.stringify( list_of_psychologists_from_server ) );``` with the following snippet
                 ```javascript
                     var psychologist_div_content = '';
 
